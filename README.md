@@ -1,2 +1,2 @@
-# radlakha.github.io
+# raadlak.github.io
 Blog
