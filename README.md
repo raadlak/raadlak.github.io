@@ -1,2 +1,2 @@
-# raadlak.github.io
-Blog
+
+Personal Blog
