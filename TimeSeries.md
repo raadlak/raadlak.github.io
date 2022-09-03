@@ -1,44 +1,45 @@
+
 # Time Series Analysis
 
 <!-- vscode-markdown-toc -->
-	* 1. [A. Reading TimeSeries Data in Pandas from Files](#A.ReadingTimeSeriesDatainPandasfromFiles)
-		* 1.1. [1. Reading data from CSVs and other delimited files](#ReadingdatafromCSVsandotherdelimitedfiles)
-		* 1.2. [2. Reading Data from Excel Files](#ReadingDatafromExcelFiles)
-		* 1.3. [3. Reading data from GitHub](#ReadingdatafromGitHub)
-		* 1.4. [4. Reading data from public S3 bucket](#ReadingdatafrompublicS3bucket)
-		* 1.5. [4.1 Reading data from private S3 Bucket](#ReadingdatafromprivateS3Bucket)
-		* 1.6. [5. Reading data from HTML](#ReadingdatafromHTML)
-		* 1.7. [6. Reading data from SAS dataset](#ReadingdatafromSASdataset)
-	* 2. [B. Reading Time Series Data from Databases](#B.ReadingTimeSeriesDatafromDatabases)
-		* 2.1. [B.1 Reading Data from relational databases](#B.1ReadingDatafromrelationaldatabases)
-		* 2.2. [B.4 Reading data from time series database (InfluxDB)](#B.4ReadingdatafromtimeseriesdatabaseInfluxDB)
-	* 3. [C. Writing timeseries data to files](#C.Writingtimeseriesdatatofiles)
-	* 4. [D. Writing time series data to Databases](#D.WritingtimeseriesdatatoDatabases)
-	* 5. [E. Working with Date and Time in Python](#E.WorkingwithDateandTimeinPython)
-		* 5.1. [E.1 DatetimeIndex](#E.1DatetimeIndex)
-		* 5.2. [E.2  DateTime Formatting](#E.2DateTimeFormatting)
-		* 5.3. [E.3 Tranforming a pandas DataFrame to a time series DataFrame](#E.3TranformingapandasDataFrametoatimeseriesDataFrame)
-		* 5.4. [E.4 Working with Time Deltas](#E.4WorkingwithTimeDeltas)
-		* 5.5. [E.5 Converting Datetime with TimeZone information](#E.5ConvertingDatetimewithTimeZoneinformation)
-		* 5.6. [E.6 Working with date offsets](#E.6Workingwithdateoffsets)
-		* 5.7. [E.6 Custom business days](#E.6Custombusinessdays)
-		* 5.8. [E.7 Custom Business Day hours](#E.7CustomBusinessDayhours)
-	* 6. [F. Handling Missing Data](#F.HandlingMissingData)
-		* 6.1. [F.1 Handling missing data with imputation using Pandas](#F.1HandlingmissingdatawithimputationusingPandas)
-		* 6.2. [F.1.2 Handling missing data with univariate imputation using scikit-learn](#F.1.2Handlingmissingdatawithunivariateimputationusingscikit-learn)
-		* 6.3. [F.1.3 Handling missing data with multivariate imputation](#F.1.3Handlingmissingdatawithmultivariateimputation)
-		* 6.4. [F.1.4 Handling missing data with Interpolation](#F.1.4HandlingmissingdatawithInterpolation)
-	* 7. [G. Outlier Detection Using Statistical Methods](#G.OutlierDetectionUsingStatisticalMethods)
-		* 7.1. [G.1 Resampling time series data](#G.1Resamplingtimeseriesdata)
-		* 7.2. [G.2 Detecting Outliers using Visualization](#G.2DetectingOutliersusingVisualization)
-		* 7.3. [G.3 Detecting Outliers with Tukey Method](#G.3DetectingOutlierswithTukeyMethod)
-		* 7.4. [G.4 Detecting outliers using a z-score](#G.4Detectingoutliersusingaz-score)
-		* 7.5. [G.5 Detecting Outliers using a modified z-score](#G.5DetectingOutliersusingamodifiedz-score)
-	* 8. [H. Exploratory Data Analysis and Diagnosis](#H.ExploratoryDataAnalysisandDiagnosis)
-		* 8.1. [H.1 Plotting time series data using Pandas](#H.1PlottingtimeseriesdatausingPandas)
-		* 8.2. [H.2 Plotting time series data with interactive visualization using hvPlot](#H.2PlottingtimeseriesdatawithinteractivevisualizationusinghvPlot)
-		* 8.3. [H.3 Decomposing time series data](#H.3Decomposingtimeseriesdata)
-		* 8.4. [H.4 Detecting time series stationarity](#H.4Detectingtimeseriesstationarity)
+  * 1. [A. Reading TimeSeries Data in Pandas from Files](#a.-reading-timeseries-data-in-pandas-from-files)
+    * 1.1. [1. Reading data from CSVs and other delimited files](#1.-reading-data-from-csvs-and-other-delimited-files)
+    * 1.2. [2. Reading Data from Excel Files](#2.-reading-data-from-excel-files)
+    * 1.3. [3. Reading data from GitHub](#3.-reading-data-from-github)
+    * 1.4. [4. Reading data from public S3 bucket](#4.-reading-data-from-public-s3-bucket)
+      * 1.4.1. [4.1 Reading data from private S3 Bucket](#4.1-reading-data-from-private-s3-bucket)
+    * 1.6. [5. Reading data from HTML](#5.-reading-data-from-html)
+    * 1.7. [6. Reading data from SAS dataset](#6.-reading-data-from-sas-dataset)
+  * 2. [B. Reading Time Series Data from Databases](#b.-reading-time-series-data-from-databases)
+    * 2.1. [B.1 Reading Data from relational databases](#b.1-reading-data-from-relational-databases)
+    * 2.2. [B.4 Reading data from time series database (InfluxDB)](#b.4-reading-data-from-time-series-database-(influxdb))
+  * 3. [C. Writing timeseries data to files](#c.-writing-timeseries-data-to-files)
+  * 4. [D. Writing time series data to Databases](#d.-writing-time-series-data-to-databases)
+  * 5. [E. Working with Date and Time in Python](#e.-working-with-date-and-time-in-python)
+    * 5.1. [E.1 DatetimeIndex](#e.1-datetimeindex)
+    * 5.2. [E.2  DateTime Formatting](#e.2-datetime-formatting)
+    * 5.3. [E.3 Tranforming a pandas DataFrame to a time series DataFrame](#e.3-tranforming-a-pandas-dataframe-to-a-time-series-dataframe)
+    * 5.4. [E.4 Working with Time Deltas](#e.4-working-with-time-deltas)
+    * 5.5. [E.5 Converting Datetime with TimeZone information](#e.5-converting-datetime-with-timezone-information)
+    * 5.6. [E.6 Working with date offsets](#e.6-working-with-date-offsets)
+    * 5.7. [E.6 Custom business days](#e.6-custom-business-days)
+    * 5.8. [E.7 Custom Business Day hours](#e.7-custom-business-day-hours)
+  * 6. [F. Handling Missing Data](#f.-handling-missing-data)
+    * 6.1. [F.1 Handling missing data with imputation using Pandas](#f.1-handling-missing-data-with-imputation-using-pandas)
+      * 6.1.1 [F.1.2 Handling missing data with univariate imputation using scikit-learn](#f.1.2-handling-missing-data-with-univariate-imputation-using-scikit-learn)
+      * 6.1.2 [F.1.3 Handling missing data with multivariate imputation](#f.1.3-handling-missing-data-with-multivariate-imputation)
+      * 6.1.3 [F.1.4 Handling missing data with Interpolation](#f.1.4-handling-missing-data-with-interpolation)
+  * 7. [G. Outlier Detection Using Statistical Methods](#g.-outlier-detection-using-statistical-methods)
+    * 7.1. [G.1 Resampling time series data](#g.1-resampling-time-series-data)
+    * 7.2. [G.2 Detecting Outliers using Visualization](#g.2-detecting-outliers-using-visualization)
+    * 7.3. [G.3 Detecting Outliers with Tukey Method](#g.3-detecting-outliers-with-tukey-method)
+    * 7.4. [G.4 Detecting outliers using a z-score](#g.4-detecting-outliers-using-a-z-score)
+    * 7.5. [G.5 Detecting Outliers using a modified z-score](#g.5-detecting-outliers-using-a-modified-z-score)
+  * 8. [H. Exploratory Data Analysis and Diagnosis](#h.-exploratory-data-analysis-and-diagnosis)
+    * 8.1. [H.1 Plotting time series data using Pandas](#h.1-plotting-time-series-data-using-pandas)
+    * 8.2. [H.2 Plotting time series data with interactive visualization using hvPlot](#h.2-plotting-time-series-data-with-interactive-visualization-using-hvplot)
+    * 8.3. [H.3 Decomposing time series data](#h.3-decomposing-time-series-data)
+    * 8.4. [H.4 Detecting time series stationarity](#h.4-detecting-time-series-stationarity)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -46,13 +47,13 @@
 	/vscode-markdown-toc-config -->
 <!-- /vscode-markdown-toc -->
 
-###  1. <a name='A.ReadingTimeSeriesDatainPandasfromFiles'></a>A. Reading TimeSeries Data in Pandas from Files    
+###  1. <a name='a.-reading-timeseries-data-in-pandas-from-files'></a>A. Reading TimeSeries Data in Pandas from Files    
 
 Often we see that time series Data is represented with Indexes. Reason in general to represent DataFrame with Index is to make slicing and dicing operations very intuitive.<br> DatetimeIndex is used for time series as Index which unlocks many features and useful functions esential while working with time series data.
 
 Following are the recipes to efficiently read time series data into a DataFrame.
 
-####  1.1. <a name='ReadingdatafromCSVsandotherdelimitedfiles'></a>1. Reading data from CSVs and other delimited files
+####  1.1. <a name='1.-reading-data-from-csvs-and-other-delimited-files'></a>1. Reading data from CSVs and other delimited files
 
 
 ```python
@@ -166,8 +167,8 @@ ts.sample(5)
 
 
 
-There are cases where the parse_dates parameter doesn't work, this is where the **date_parser** parameter can be useful.
-date_parser will contain a lambda function to convert the date column using pandas **to_datetime** function. <br><br>
+There are cases where the parse_dates parameter doesn't work, this is where the ate_parserparameter can be useful.
+date_parser will contain a lambda function to convert the date column using pandas o_datetimefunction. <br><br>
 Format is added to the date parser to point out the existing format of the date column. <br>
 %d represents, day of the month - 21<br>
 %b represents, month as short, ex. Jan <br>
@@ -290,7 +291,7 @@ ts.info()
     memory usage: 5.0+ KB
 
 
-Note: Date column is now of type DateTimeIndex. Column Daily and Forecast is of dtype *'object'*, to correct the dtype we would need to remove $ sign and convert them to astype float.
+Note: Date column is now of type DateTimeIndex. Column Daily and Forecast is of dtype object' to correct the dtype we would need to remove $ sign and convert them to astype float.
 
 
 ```python
@@ -450,7 +451,7 @@ ts.head()
 
 
 
-####  1.2. <a name='ReadingDatafromExcelFiles'></a>2. Reading Data from Excel Files
+####  1.2. <a name='2.-reading-data-from-excel-files'></a>2. Reading Data from Excel Files
 
 Excels contain multiple worksheets, so it is essential to explore different options to read Excels.In read_excel(), we will use engine parameter to specify, which library to use for processing Excels. <br>
 Ex: openpyxl, xlrd
@@ -519,7 +520,7 @@ ts_combined.info()
     memory usage: 2.8+ MB
 
 
-####  1.3. <a name='ReadingdatafromGitHub'></a>3. Reading data from GitHub
+####  1.3. <a name='3.-reading-data-from-github'></a>3. Reading data from GitHub
 
 To read data from github we need url to the raw content, like (https://media.githubusercontent.com/media/PacktPublishing/Time-Series-Analysis-with-Python-Cookbook./main/datasets/Ch2/AirQualityUCI.csv)
 
@@ -604,7 +605,7 @@ df.iloc[:3, 1:4]
 
 
 
-####  1.4. <a name='ReadingdatafrompublicS3bucket'></a>4. Reading data from public S3 bucket
+####  1.4. <a name='4.-reading-data-from-public-s3-bucket'></a>4. Reading data from public S3 bucket
 
 To read data from public S3 bucket, you don't need to specify the region (us-east-1), we can directly read it using s3 url.
 
@@ -779,7 +780,7 @@ Reading the same file using s3url
 s3uri = 's3://tscookbook/AirQualityUCI.csv'
 ```
 
-####  1.5. <a name='ReadingdatafromprivateS3Bucket'></a>4.1 Reading data from private S3 Bucket
+####  1.5. <a name='4.1-reading-data-from-private-s3-bucket'></a>4.1 Reading data from private S3 Bucket
 
 
 ```python
@@ -815,8 +816,8 @@ client = boto3.client("s3",
 
 ```
 
-The **client** is a low level service access interface that gives you more granular control, ex. boto3.client("s3). <br>
-The **resource** is a high level object-oriented interface (an abstraction layer), for example, boto3.resource("s3")
+The lientis a low level service access interface that gives you more granular control, ex. boto3.client("s3). <br>
+The esourceis a high level object-oriented interface (an abstraction layer), for example, boto3.resource("s3")
 
 
 ```python
@@ -826,7 +827,7 @@ df = pd.read_csv(data['Body'], # when we call get_object, we receive a key-value
                 parse_dates=True)
 ```
 
-####  1.6. <a name='ReadingdatafromHTML'></a>5. Reading data from HTML
+####  1.6. <a name='5.-reading-data-from-html'></a>5. Reading data from HTML
 
 We can read HTML tables using pandas.read_html() function. We will https://en.wikipedia.org/wiki/COVID-19_pandemic_by_country_and_territory link to access HTML Wikipedia data.
 
@@ -968,7 +969,7 @@ pandas.read_json() <br>
 The URL needs to be one of the valid URL schemes that pandas supports, which includes http and https, ftp, s3, gs, or the file protocol.
 			
 
-####  1.7. <a name='ReadingdatafromSASdataset'></a>6. Reading data from SAS dataset
+####  1.7. <a name='6.-reading-data-from-sas-dataset'></a>6. Reading data from SAS dataset
 
 We can use pandas.read_sas() function to read SAS7BDAT files.
 
@@ -1085,7 +1086,7 @@ l_path = Path(_base_location+chapter+filename)
     Wall time: 717 ms
 
 
-###  2. <a name='B.ReadingTimeSeriesDatafromDatabases'></a>B. Reading Time Series Data from Databases
+###  2. <a name='b.-reading-time-series-data-from-databases'></a>B. Reading Time Series Data from Databases
 
 Reading TimeSeries Data from different databases with DatetimeIndex. <br>
 
@@ -1096,7 +1097,7 @@ Reading third-party financial data using APIs <br>
 Reading data from a time series database (InfluxDB) <br>
 
 
-####  2.1. <a name='B.1ReadingDatafromrelationaldatabases'></a>B.1 Reading Data from relational databases
+####  2.1. <a name='b.1-reading-data-from-relational-databases'></a>B.1 Reading Data from relational databases
 
 To read data from relational databases we will start with Postgre SQL. We will be exploring two different methods to connect to PSQL. <br>
 1. psycopg2 - python connector for PSQL.
@@ -1118,7 +1119,7 @@ Connection can be established by passing the parameters to the .connect() method
 
 
 ```python
-conn = psycopg2.connect(**params)
+conn = psycopg2.connect(arams)
 cursor = conn.cursor()
 ```
 
@@ -1147,13 +1148,13 @@ df.info()
 ```
 
 
-Another way to grab the table with column name is by instructing the cursor to return a **RealDictRow** class to the cursor_factory parameter
+Another way to grab the table with column name is by instructing the cursor to return a ealDictRowclass to the cursor_factory parameter
 
 
 ```python
 from psycopg2.extras import RealDictCursor
 cursor = conn.cursor(cursor_factory=RealDictCursor)
-cursor.execute("SELECT * from yen_tbl;")
+cursor.execute("SELECT from yen_tbl;")
 data = cursor.fetchall()
 df = pd.DataFrame(data)
 cursor.close()
@@ -1168,7 +1169,7 @@ import psycopg2
 url = 'postgresql://postgres:password@localhost:5432'
 with psycopg2.connect(url) as conn:
     with conn.cursor() as cursor:
-        cursor.excecute("SELECT * FROM yen_tbl")
+        cursor.excecute("SELECT FROM yen_tbl")
         data = cursor.fetchall()
 
 ```
@@ -1178,14 +1179,13 @@ with psycopg2.connect(url) as conn:
 SQL Alchemy is ORM (object relational mapper), which provides abstraction layer to use OOP to interact with relational database.<br>
 SQL Alchemy integrates well with pandas, and pandas SQL reader and writer functions depend on SQL Alchemy as abstraction layer.<br><br>
 
-Some of the pandas reader function that rely on SQLAlchemy include, **pandas.read_sql(), pandas.read_sql_query() and pandas.read_sql_table()**
-
+Some of the pandas reader function that rely on SQLAlchemy include, andas.read_sql(), pandas.read_sql_query() and pandas.read_sql_table()
 
 ```python
 import pandas as pd
 from sqlalchemy import create_engine
 engine = create_engine("postgresql+psycopg2://postgres:password@localhost:5432") #SQLAlchemy uses the dialect and the driver (DBAPI).
-query = "SELECT * FROM yen_tbl"
+query = "SELECT FROM yen_tbl"
 df = pd.read_sql(query,
                  engine,
                  index_col='date',
@@ -1205,7 +1205,7 @@ df = pd.read_sql_query(query,
 df['last'].tail(3)
 ```
 
-Pandas has another SQL reader function called pandas.read_sql_table() that does noth take a SQL query, instead taking a table name. This can be considered as SELECT * FROM sometable query.
+Pandas has another SQL reader function called pandas.read_sql_table() that does noth take a SQL query, instead taking a table name. This can be considered as SELECT FROM sometable query.
 
 
 ```python
@@ -1237,7 +1237,7 @@ database = 'dev'
 username = params['username']
 chunksize = 1000
 password = params['password']
-query = "SELECT * FROM yen_tbl"
+query = "SELECT FROM yen_tbl"
 
 aws_engine = create_engine(f"postgresql+psycopg2://{username}:{password}@{host}:\
                    {port}/{database}")
@@ -1279,13 +1279,13 @@ params = dict(config['SNOWFLAKE'])
 
 
 ```python
-con = connector.connect(**params)
+con = connector.connect(arams)
 cursor = con.cursor()
 ```
 
 
 ```python
-query = "select * from ORDERS;"
+query = "select from ORDERS;"
 cursor.execute(query)
 
 df = cursor.fetch_pandas_all()
@@ -1320,7 +1320,7 @@ import pandas_datareader.data as web
 
 ```python
 start_date = (datetime.datetime.today() -
-        datetime.timedelta(weeks=52*10)).strftime('%Y-%m-%d')
+        datetime.timedelta(weeks=520)).strftime('%Y-%m-%d')
 end_date = datetime.datetime.today().strftime('%Y-%m-%d')
 tickers = ['MSFT','AAPL']
 
@@ -1451,7 +1451,7 @@ Additionally, the library provides other high-level functions for many of the da
 
 
 
-####  2.2. <a name='B.4ReadingdatafromtimeseriesdatabaseInfluxDB'></a>B.4 Reading data from time series database (InfluxDB)
+####  2.2. <a name='b.4-reading-data-from-time-series-database-(influxdb)'></a>B.4 Reading data from time series database (InfluxDB)
 
 A time serie DB, a type of NoSQL database, is optimized for time-stamped or time series data for improved performance, especially when working with large datasets containing IoT data or sensor data. 
 
@@ -1536,17 +1536,17 @@ query_api gives us additional methods to interact with our bucket:
     query_stream() is similar to query_data_frame_stream but returns a stream of FluxRecord as a generator.
 
 
-###  3. <a name='C.Writingtimeseriesdatatofiles'></a>C. Writing timeseries data to files
+###  3. <a name='c.-writing-timeseries-data-to-files'></a>C. Writing timeseries data to files
 
-###  4. <a name='D.WritingtimeseriesdatatoDatabases'></a>D. Writing time series data to Databases
+###  4. <a name='d.-writing-time-series-data-to-databases'></a>D. Writing time series data to Databases
 
-###  5. <a name='E.WorkingwithDateandTimeinPython'></a>E. Working with Date and Time in Python
+###  5. <a name='e.-working-with-date-and-time-in-python'></a>E. Working with Date and Time in Python
 
-####  5.1. <a name='E.1DatetimeIndex'></a>E.1 DatetimeIndex
+####  5.1. <a name='e.1-datetimeindex'></a>E.1 DatetimeIndex
 
 It is critical to understand DatetimeIndex to work with Date and Time datasets.
 
-**pandas.to_datetime()** - it returns Timestamp object, is a powerful function that can intelligently parse different date representations from strings.
+andas.to_datetime()- it returns Timestamp object, is a powerful function that can intelligently parse different date representations from strings.
 
 
 ```python
@@ -1614,7 +1614,7 @@ print(parsed_dates)
                   dtype='datetime64[ns]', freq=None)
 
 
-Error parameter in **pandas.to_datetime** can take one of the three valid string option:
+Error parameter in andas.to_datetimecan take one of the three valid string option:
 1. raise - which means it will raise exception (error out).
 2. coerce - will not cause exception. Instead, it will just replace pd.NaT, indicating a missing datetime value.
 3. ignore - will not cause exception, it will pass the original value.
@@ -1718,7 +1718,7 @@ pd.date_range(start='2021-01-01',
 
 
 
-####  5.2. <a name='E.2DateTimeFormatting'></a>E.2  DateTime Formatting
+####  5.2. <a name='e.2-datetime-formatting'></a>E.2  DateTime Formatting
 
 At times date column is stored as string format, to have more control, to ensure date is parsed correctly as date/datetime object we use strptime() method from datetime module.
 
@@ -1785,7 +1785,7 @@ dt.datetime.strptime('Saturday, January 1, 2022', '%A, %B %d, %Y').date()
 
 
 
-####  5.3. <a name='E.3TranformingapandasDataFrametoatimeseriesDataFrame'></a>E.3 Tranforming a pandas DataFrame to a time series DataFrame
+####  5.3. <a name='e.3-tranforming-a-pandas-dataframe-to-a-time-series-dataframe'></a>E.3 Tranforming a pandas DataFrame to a time series DataFrame
 
 
 ```python
@@ -1864,7 +1864,7 @@ df.info() #since Date is now index
     memory usage: 48.0 bytes
 
 
-####  5.4. <a name='E.4WorkingwithTimeDeltas'></a>E.4 Working with Time Deltas
+####  5.4. <a name='e.4-working-with-time-deltas'></a>E.4 Working with Time Deltas
 
 
 ```python
@@ -1943,7 +1943,7 @@ df
 
 
 
-The **Timedelta** class makes it possible to derive new datetime objects by adding or subtracting at different ranges or increments, such as seconds, daily, and weekly. This includes time zone-aware calculations
+The imedeltaclass makes it possible to derive new datetime objects by adding or subtracting at different ranges or increments, such as seconds, daily, and weekly. This includes time zone-aware calculations
 
 
 
@@ -2220,7 +2220,7 @@ pandas.Timedelta and datetime.timedelta are equivalent.
 ```python
 week_td = pd.Timedelta('1W')
 print(pd.to_datetime('1 JAN 2022') + week_td)
-print(pd.to_datetime('1 JAN 2022') + 2*week_td)
+print(pd.to_datetime('1 JAN 2022') + 2eek_td)
 ```
 
     2022-01-08 00:00:00
@@ -2424,7 +2424,7 @@ df
 
 
 
-####  5.5. <a name='E.5ConvertingDatetimewithTimeZoneinformation'></a>E.5 Converting Datetime with TimeZone information 
+####  5.5. <a name='e.5-converting-datetime-with-timezone-information'></a>E.5 Converting Datetime with TimeZone information 
 
 Time-series data requires attention to different time zones, when developing data pipelines, building a data warehouse, or integrating data between systems, dealing with time zones requires attention
 
@@ -2956,7 +2956,7 @@ df
 
 
 
-####  5.6. <a name='E.6Workingwithdateoffsets'></a>E.6 Working with date offsets
+####  5.6. <a name='e.6-working-with-date-offsets'></a>E.6 Working with date offsets
 
 Offsets are useful in transforming dates into something more meaningful and relatable.
 
@@ -3666,7 +3666,7 @@ df
 
 
 
-####  5.7. <a name='E.6Custombusinessdays'></a>E.6 Custom business days
+####  5.7. <a name='e.6-custom-business-days'></a>E.6 Custom business days
 
 
 ```python
@@ -3780,7 +3780,7 @@ These include the following:
     CustomBusinessMonthBegin or CBMonthBegin
     CustomBusinessHour
 
-####  5.8. <a name='E.7CustomBusinessDayhours'></a>E.7 Custom Business Day hours
+####  5.8. <a name='e.7-custom-business-day-hours'></a>E.7 Custom Business Day hours
 
 
 ```python
@@ -3889,7 +3889,7 @@ df
 
 
 ```python
-df['Date'] + cust_hours * 16
+df['Date'] + cust_hours 16
 ```
 
     /Users/rahuladlakha/opt/anaconda3/lib/python3.9/site-packages/pandas/core/arrays/datetimes.py:741: PerformanceWarning: Non-vectorized DateOffset being applied to Series or DatetimeIndex
@@ -3913,13 +3913,13 @@ df['Date'] + cust_hours * 16
 
 
 
-###  6. <a name='F.HandlingMissingData'></a>F. Handling Missing Data
+###  6. <a name='f.-handling-missing-data'></a>F. Handling Missing Data
 
 Missing data and outliers are two common problems that need to be dealt with during data cleaning and preparation. <br>
 Time series data is no different, and before plugging the data into any analysis or modeling workflow, you must investigate the data first.<br>We will explore techniques to handle missing data through imputation and interpolation.
 
 
-Steps to be followed for handling missing data: ingest the data into a DataFrame, **identify missing data, impute missing data, evaluate it against the original data**, and finally, visualize **and compare the different imputation techniques**.
+Steps to be followed for handling missing data: ingest the data into a DataFrame, dentify missing data, impute missing data, evaluate it against the original data and finally, visualize nd compare the different imputation techniques
 
 
 
@@ -3997,7 +3997,7 @@ def rmse_score(df1, df2, col=None):
     scores = []
     dict = {}
     for comp_col in columns[1:]:
-        rmse = np.sqrt(np.mean((df1[col] - df_missing[comp_col])**2))
+        rmse = np.sqrt(np.mean((df1[col] - df_missing[comp_col])))
         scores.append(rmse)
         print(f'RMSE for {comp_col}: {rmse}')
         min_rmse = min(scores)
@@ -4010,20 +4010,20 @@ def rmse_score(df1, df2, col=None):
 
 Missing data is inevitable. It is important to formulate right strategy to deal with missing data. <br>
 
-**One approach** could be to remove the missing data, drop the observations. This may not be the best strategy if you have limited data in first place. And if done prematurely then the drawback could be, you'll never know if the missing data was due to censoring or due to bias.
+ne approachcould be to remove the missing data, drop the observations. This may not be the best strategy if you have limited data in first place. And if done prematurely then the drawback could be, you'll never know if the missing data was due to censoring or due to bias.
 
-**Second approach** could be to tag the rows with missing data by adding a column, describing or labeling the missing data.
+econd approachcould be to tag the rows with missing data by adding a column, describing or labeling the missing data.
 
-**Third approach** could be to estimate the missing data values. The method could range from simple to more complex techniques leveraging ML and stat models.
+hird approachcould be to estimate the missing data values. The method could range from simple to more complex techniques leveraging ML and stat models.
 
 One of the most important piece is to measure the accuracy of the estimated values for data missing in the first place.<br>
 There are different approaches, emphasizing a through evaluation and validation process to select ideal way for each situation.
 
-**RMSE - Root Mean Squared Error** - To evaluate different imputation techniques
+MSE - Root Mean Squared Error- To evaluate different imputation techniques
 
 The process to calculate the RMSE can be broken down into a few simple steps: first, computing the error, which is the difference between the actual values and the predicted or estimated values. 
 This is done for each observation. <br> Since the errors may be either negative or positive, and to avoid having a zero summation, the errors (differences) are squared. <br>
-Finally, all the errors are summed and divided by the total number of observations to compute the mean. This gives you the **Mean Squared Error (MSE)**. RMSE is just the square root of the MSE.
+Finally, all the errors are summed and divided by the total number of observations to compute the mean. This gives you the ean Squared Error (MSE) RMSE is just the square root of the MSE.
 
 $RMSE$ = $\huge\sqrt{\frac{\sum_{i=1}^{N}(x-\widehat{x_i})^2}{N}}$
 
@@ -4386,7 +4386,7 @@ ecom_df.describe(include='all', datetime_is_numeric=True)
 test = pd.read_csv(folder1, parse_dates=['date'], na_values={'?'}) #specifying the na values based on the summary statistics 
 ```
 
-####  6.1. <a name='F.1HandlingmissingdatawithimputationusingPandas'></a>F.1 Handling missing data with imputation using Pandas
+####  6.1. <a name='f.1-handling-missing-data-with-imputation-using-pandas'></a>F.1 Handling missing data with imputation using Pandas
 
 There are two approaches to impute missing data:
 
@@ -4400,10 +4400,10 @@ In Univariate Imputation, we will use non-missing values in a single variable (t
 For Ex. If have a sales column in the dataset with some missing values, you can use a univariate imputation method to impute missing sales observations using average sales
 
 
-**Basic Univariate Imputation Techniques** <br>
+asic Univariate Imputation Techniques<br>
 Imputing using the mean<br>
-Imputing using the last observation forward (**forward fill - ffill**). This also referred as Last Observed Carried Forward (LOCF) <br>
-Imputing using the next observation backward (**backward fill - bfill**). This also referred as Next Observation Carried Backward (NOCB)
+Imputing using the last observation forward (orward fill - ffill. This also referred as Last Observed Carried Forward (LOCF) <br>
+Imputing using the next observation backward (ackward fill - bfill. This also referred as Next Observation Carried Backward (NOCB)
 
 
 ```python
@@ -4770,12 +4770,12 @@ clicks_missing[clicks_missing['clicks'].isna()]
 
 
 
-Let's perform **imputation** using **fillna() method**, DataFrame.fillna() is the simplest imputation method. The function can be used in two ways depending on which parameter you are using:
+Let's perform mputationusing illna() method DataFrame.fillna() is the simplest imputation method. The function can be used in two ways depending on which parameter you are using:
 
-The **value parameter**, where you can pass a scalar value (numeric or string) to use to fill for all missing values <br>
+The alue parameter where you can pass a scalar value (numeric or string) to use to fill for all missing values <br>
 The method parameter, which takes specific string values: <br>
-**Backward filling: backfill or bfill**, uses the next observation, after the missing spot(s) and fills the gaps backward <br>
-**Forward filling: ffill or pad**, uses the last value before the missing spot(s) and fills the gaps forward” <br>
+ackward filling: backfill or bfill uses the next observation, after the missing spot(s) and fills the gaps backward <br>
+orward filling: ffill or pad uses the last value before the missing spot(s) and fills the gaps forward” <br>
 
 
 
@@ -4847,9 +4847,9 @@ plot_dfs(clicks_original, clicks_missing, 'clicks')
     
 
 
-####  6.2. <a name='F.1.2Handlingmissingdatawithunivariateimputationusingscikit-learn'></a>F.1.2 Handling missing data with univariate imputation using scikit-learn
+####  6.2. <a name='f.1.2-handling-missing-data-with-univariate-imputation-using-scikit-learn'></a>F.1.2 Handling missing data with univariate imputation using scikit-learn
 
-**SimpleImputer class from scikit-learn** accepts different values for the strategy parameter, including mean, median and most_frequent.
+impleImputer class from scikit-learnaccepts different values for the strategy parameter, including mean, median and most_frequent.
 
 
 ```python
@@ -4937,8 +4937,8 @@ We used SimpleImputer class to implement three simple strategies to impute missi
 
 SimpleImputer will impute all occurrences of the missing_values, which you can update with pandas.NA, an integer, float, or a string value.
 
-**strategy**, which defaults to mean, and takes string values. <br>
-**fill_value** can be used to replace all instances from missing_values with a specific value. This can either be a string or a numeric value. If the Strategy was set to constant, then you will need to provide your custom fill_value.”
+trategy which defaults to mean, and takes string values. <br>
+ill_valuecan be used to replace all instances from missing_values with a specific value. This can either be a string or a numeric value. If the Strategy was set to constant, then you will need to provide your custom fill_value.”
 
 
 
@@ -5095,7 +5095,7 @@ _ = rmse_score(co2_original, co2_missing[cols], 'co2')
     Mininum RMSE belongs to Mean Strategy is 0.7156383637041684
 
 
-####  6.3. <a name='F.1.3Handlingmissingdatawithmultivariateimputation'></a>F.1.3 Handling missing data with multivariate imputation
+####  6.3. <a name='f.1.3-handling-missing-data-with-multivariate-imputation'></a>F.1.3 Handling missing data with multivariate imputation
 
 In multivariate imputation we use multiple variables within the dataset to impute missing values. Having more variables within the dataset,chime in to improve the predictability of missing values.
 
@@ -5179,10 +5179,10 @@ The RMSE could be misleading because we did not seek the best score (smallest va
 We may use the data (with imputed values) to build another model for making predictions (forecasting). <br>
 Thus, we do not mind some imperfections to better resemble real data. Additionally, since we may not know the true nature of the missing data, the goal is to get a decent estimate
 
-**Multivariate Imputation by Chained Equation** implementation in InterativeImputer class
+ultivariate Imputation by Chained Equationimplementation in InterativeImputer class
 
 The basic idea is to treat each variable with missing values as the dependent variable in a regression, with some or all of the remaining variables as its predictors. <br> 
-The MICE procedure cycles through these models, fitting each in turn, then uses a procedure called **“predictive mean matching” (PMM)** to generate random draws from the predictive distributions determined by the fitted models. <br>
+The MICE procedure cycles through these models, fitting each in turn, then uses a procedure called predictive mean matching” (PMM)to generate random draws from the predictive distributions determined by the fitted models. <br>
 These random draws become the imputed values for one imputed data set.
 
 By default, each variable with missing variables is modeled using a linear regression with main effects for all other variables in the data set. <br> Note that even when the imputation model is linear, the PMM procedure preserves the domain of each variable. <br> Thus, for example, if all observed values for a given variable are positive, all imputed values for the variable will always be positive. <br> The user also has the option to specify which model is used to produce imputed values for each variable.
@@ -5267,17 +5267,17 @@ _ = mice_data.plot_fit_obs('clicks')
 
 Overall, multivariate imputation techniques generally produce better results than univariate methods.<br> This is true when working with more complex time-series datasets in terms of the number of features (columns) and records. <br> Though univariate imputers are more efficient in terms of speed and simplicity to interpret, there is a need to balance complexity, quality, and analytical requirements.
 
-####  6.4. <a name='F.1.4HandlingmissingdatawithInterpolation'></a>F.1.4 Handling missing data with Interpolation
+####  6.4. <a name='f.1.4-handling-missing-data-with-interpolation'></a>F.1.4 Handling missing data with Interpolation
 
 Commonly used technique for imputing missing values is interpolation. The pandas library provides the `DataFrame.interpolate()` method for more complex univariate imputation strategies. <br>
 Each interpolation method will have a different mathematical operation to determine how to fill in for the missing data.
 
-**Techniques in Interpolation:** <br>
-**Linear Interpolation**<br>
+echniques in Interpolation:<br>
+inear Interpolationbr>
 Linear interpolation can be used to impute missing data by drawing a straight line between the two points surrounding the missing value. <br>
   In time series, this means for a missing data point, it looks at a prior past value and the next future value to draw a line between them.
 
-**Polynomial Interpolation** <br>
+olynomial Interpolation<br>
 Polynimial Interpolation will attempt to draw a curved line between the two points.
 
 We will use the pandas DataFrame.interpolate() function to examine different interpolation methods, including linear, polynomial, quadratic, nearest, and spline.
@@ -5312,7 +5312,7 @@ for intp in interpolation:
       co2_missing[intp] = co2_missing['co2'].interpolate(method=intp)
 
 
-There are two additional methods that it would be interesting to test: *spline* and *polynomial*. To use these methods, we need to provide the order parameter.
+There are two additional methods that it would be interesting to test: plineand olynomial To use these methods, we need to provide the order parameter.
 
 
 ```python
@@ -5378,22 +5378,22 @@ plot_dfs(clicks_original, clicks_missing[cols], 'clicks')
     
 
 
-###  7. <a name='G.OutlierDetectionUsingStatisticalMethods'></a>G. Outlier Detection Using Statistical Methods
+###  7. <a name='g.-outlier-detection-using-statistical-methods'></a>G. Outlier Detection Using Statistical Methods
 
 Types of Outliers: <br>
-**Point Outlier** - A data point deviates from the rest of the population—sometimes referred to as a global outlier.<br>
-**Contextual Outlier** -  When an observation is considered an outlier based on a particular condition or context, such as deviation from neighboring data points. However, the same observation may not be considered an outlier if the context changes<br>
-**Collective Outlier** - groups of observations, differ from the population and don't follow the expected pattern<br>
+oint Outlier- A data point deviates from the rest of the population—sometimes referred to as a global outlier.<br>
+ontextual Outlier-  When an observation is considered an outlier based on a particular condition or context, such as deviation from neighboring data points. However, the same observation may not be considered an outlier if the context changes<br>
+ollective Outlier- groups of observations, differ from the population and don't follow the expected pattern<br>
 
 
 Outlier Detection and Change point detection are different. <br>
 
-**Change Point Detection (CPD)**, the goal is to anticipate abrupt and impactful fluctuations (increasing or decreasing) in the time series data.
-CPD covers specific techniques, such as **CUMSUM** and **Bayesian online change point detection (BOCPD)**. <br>
+hange Point Detection (CPD) the goal is to anticipate abrupt and impactful fluctuations (increasing or decreasing) in the time series data.
+CPD covers specific techniques, such as UMSUMand ayesian online change point detection (BOCPD) <br>
 Example: A machine may break if the internal temperature reaches a certain point or if you're trying to understand whether the discounted price did increase sales or not.
 
 
-**Statistical Techniques for Outlier Detection** <br>
+tatistical Techniques for Outlier Detection<br>
 1. Resampling time series data
 2. Detecting outliers using visualization
 3. Detecting outliers using the Tukey method
@@ -5477,7 +5477,7 @@ Sometimes you may need to test your model with outliers and again without outlie
 
 There are many well-known methods for outlier detection.
 
-In **statistical methods**, you have different tools that you can leverage:
+In tatistical methods you have different tools that you can leverage:
 1. Use of visualizations (boxplots, QQ-plots, histograms, and scatter plots), 
 2. z-score, 
 3. interquartile range (IQR) and Tukey fences,
@@ -5485,19 +5485,18 @@ In **statistical methods**, you have different tools that you can leverage:
 
 These are basic, easy to interpret, and effective methods.
 
-####  7.1. <a name='G.1Resamplingtimeseriesdata'></a>G.1 Resampling time series data
+####  7.1. <a name='g.1-resampling-time-series-data'></a>G.1 Resampling time series data
 
 Resampling implies changing the frequency or level of granularity of the data.
 
-The need for resampling depends upon the requirement of analysis granularity. Sometimes we need to aggregate the data from daily level to weekly level, i.e. called as **downsampling**; for this we need some aggregation function such as mean, sum, min, or max. etc.
+The need for resampling depends upon the requirement of analysis granularity. Sometimes we need to aggregate the data from daily level to weekly level, i.e. called as ownsampling for this we need some aggregation function such as mean, sum, min, or max. etc.
 
-However, in some situations we need to resample from daily level to hourly, i.e. called as **upsampling**; this results in null rows, which can be filled using imputation or interpolation.
+However, in some situations we need to resample from daily level to hourly, i.e. called as psampling this results in null rows, which can be filled using imputation or interpolation.
 
-Resampling is done using **DataFrame.resample()** function.
+Resampling is done using ataFrame.resample()function.
 
-For downsampling, **D** stands for **Day**, **3B** for **3*Business day**, **W** for **Week**, **M** for **Month end**, **MS** for **Month Start**
-
-For Upsampling, **15T** stands for **15 minutes** and rest same for downsampling
+For downsampling, stands for ay Bfor usiness day for eek for onth end Sfor onth Start
+For Upsampling, 5Tstands for 5 minutesand rest same for downsampling
 
 
 ```python
@@ -5529,7 +5528,7 @@ df_downsampled.index.freq
 
 
 
-    <3 * Days>
+    <3 Days>
 
 
 
@@ -5598,7 +5597,7 @@ nyc_taxi.resample('15T').mean().head() #'T' is used for minutes
 
 
 
-**NaN** rows created by upsampling, we need to give instruction on how to fill the NaN rows. 
+aNrows created by upsampling, we need to give instruction on how to fill the NaN rows. 
 
 
 ```python
@@ -5758,9 +5757,9 @@ nyc_taxi.resample('W').agg(['mean', 'sum', 'max', 'median', 'max']).head()
 
 
 
-####  7.2. <a name='G.2DetectingOutliersusingVisualization'></a>G.2 Detecting Outliers using Visualization
+####  7.2. <a name='g.2-detecting-outliers-using-visualization'></a>G.2 Detecting Outliers using Visualization
 
-There are two general approaches for using statistical techniques to detect outliers: **parametric** and **non-parametric** methods. <br> Parametric methods assume you know the underlying distribution of the data. For example, if your data follows a normal distribution. <br> On the other hand, in non-parametric methods, you make no such assumptions.
+There are two general approaches for using statistical techniques to detect outliers: arametricand on-parametricmethods. <br> Parametric methods assume you know the underlying distribution of the data. For example, if your data follows a normal distribution. <br> On the other hand, in non-parametric methods, you make no such assumptions.
 
 Histograms and box plots are basic non-parametric techniques that can provide insight into the distribution of the data and the presence of outliers. <br>
 More specifically, box plots, also known as box and whisker plots, provide a five-number summary: the minimum, first quartile (25th percentile), median (50th percentile), third quartile (75th percentile), and the maximum. <br>
@@ -5833,11 +5832,11 @@ sns.boxplot(tx['value'])
     
 
 
-The width of the box (Q1 to Q3) is called **interquartile range (IQR)** calculated as the difference between the 75th and 25th percentiles **(Q3 – Q1)**. <br> The lower fence is calculated as Q1 - (1.5 x IQR), and the upper fence as Q3 + (1.5 x IQR). Any observation less than the lower boundary or greater than the upper boundary is considered a potential outlier.
+The width of the box (Q1 to Q3) is called nterquartile range (IQR)calculated as the difference between the 75th and 25th percentiles Q3 – Q1) <br> The lower fence is calculated as Q1 - (1.5 x IQR), and the upper fence as Q3 + (1.5 x IQR). Any observation less than the lower boundary or greater than the upper boundary is considered a potential outlier.
 
-There are two more variations for box plots in seaborn **(boxenplot and violinplot)**.
+There are two more variations for box plots in seaborn boxenplot and violinplot)
 
-**Boxenplot** is letter-value plot, better suited when working with larger datasets
+oxenplotis letter-value plot, better suited when working with larger datasets
 
 
 ```python
@@ -5911,13 +5910,13 @@ sns.violinplot(tx["value"])
     
 
 
-**Violen plot** that is a hybrid between a box plot and a **kernel density estimation (KDE)**.
+iolen plotthat is a hybrid between a box plot and a ernel density estimation (KDE)
 
 A kernel is a function that estimates the probability density function, the larger peaks (wider area), for example, show where the majority of the points are concentrated. This means that there is a higher probability that a data point will be in that region as opposed to the much thinner regions showing much lower probability.
 
 The number of peaks; in this case, we have one peak, which makes it a unimodal distribution. If there is more than one peak, we call it a multimodal distribution, which should trigger a further investigation into the data.
 
-**Lag Plot** - It is a Scatter plot, but instead of plotting two variables to observe correlation, as an example, we plot the same variable against its lagged version.
+ag Plot- It is a Scatter plot, but instead of plotting two variables to observe correlation, as an example, we plot the same variable against its lagged version.
 
 
 ```python
@@ -5938,7 +5937,7 @@ lag_plot(tx)
     
 
 
-####  7.3. <a name='G.3DetectingOutlierswithTukeyMethod'></a>G.3 Detecting Outliers with Tukey Method
+####  7.3. <a name='g.3-detecting-outliers-with-tukey-method'></a>G.3 Detecting Outliers with Tukey Method
 
 The box plot showed the quartiles with whiskers extending to the upper and lower fences. These boundaries or fences were calculated using the Tukey method.
 
@@ -6059,8 +6058,8 @@ IQR is calculated as the difference between Q3 and Q1 (IQR = Q3 – Q1), which d
 def iqr_outliers(data):
     q1, q3 = np.percentile(data, [25, 75])
     IQR = q3 - q1
-    lower_fence = q1 - (1.5 * IQR)
-    upper_fence = q3 + (1.5 * IQR)
+    lower_fence = q1 - (1.5 IQR)
+    upper_fence = q3 + (1.5 IQR)
     return data[(data.value > upper_fence) | (data.value < lower_fence)]
 ```
 
@@ -6164,15 +6163,15 @@ plot_outliers(known_outliers, tx, "known outliers")
 
 This simple method did a great job at identifying four of the five known outliers. In addition, Tukey's method identified two additional outliers on 2014-12-26 and 2015-01-26.
 
-“The use of 1.5x(IQR) is common when it comes to defining outliers, you can change the default 1.5 value by updating the whis parameter in the boxplot function. <br> **The choice of 1.5 makes the most sense when the data follows a Gaussian distribution (normal)**, but this is not always the case. <br> Generally, the larger the value, the fewer outliers you will capture as you expand your boundaries (fences). Similarly, the smaller the value, the more non-outliers will be defined as outliers, as you are shrinking the boundaries (fences).
+“The use of 1.5x(IQR) is common when it comes to defining outliers, you can change the default 1.5 value by updating the whis parameter in the boxplot function. <br> he choice of 1.5 makes the most sense when the data follows a Gaussian distribution (normal) but this is not always the case. <br> Generally, the larger the value, the fewer outliers you will capture as you expand your boundaries (fences). Similarly, the smaller the value, the more non-outliers will be defined as outliers, as you are shrinking the boundaries (fences).
 
 
 ```python
 def iqr_outliers(data, p):
     q1, q3 = np.percentile(data, [25, 75])
     IQR = q3 - q1
-    lower_fence = q1 - (p * IQR)
-    upper_fence = q3 + (p * IQR)
+    lower_fence = q1 - (p IQR)
+    upper_fence = q3 + (p IQR)
     return data[(data.value > upper_fence) | (data.value < lower_fence)]
 ```
 
@@ -6181,7 +6180,7 @@ def iqr_outliers(data, p):
 for p in [1.3, 1.5, 2.0, 2.5,  3.0]:
     print(f'with p={p}')
     print(iqr_outliers(tx, p))
-    print('-'*15)
+    print('-'5)
 ```
 
     with p=1.3
@@ -6233,9 +6232,9 @@ for p in [1.3, 1.5, 2.0, 2.5,  3.0]:
     ---------------
 
 
-####  7.4. <a name='G.4Detectingoutliersusingaz-score'></a>G.4 Detecting outliers using a z-score
+####  7.4. <a name='g.4-detecting-outliers-using-a-z-score'></a>G.4 Detecting outliers using a z-score
 
-**z-score** is a common transformation for standardizing the data, common when you want to compare different datasets.
+-scoreis a common transformation for standardizing the data, common when you want to compare different datasets.
 
 The z-score standardizes the data to be centered around a zero mean and the units represent standard deviations away from the mean.
 
@@ -6243,7 +6242,7 @@ $\huge{z}$ = $\huge\frac{(x-\mu)}{\sigma}$
 
 z-score is a lossless transformation, which means you will not lose information such as its distribution (shape of data) or the relationship between the observation.
 
-**Shortcoming** - It is a parameteric statistical method, since it assumes a gaussian distribution. In case the data is not normal then we will use modified z-score.
+hortcoming- It is a parameteric statistical method, since it assumes a gaussian distribution. In case the data is not normal then we will use modified z-score.
 
 
 ```python
@@ -6330,10 +6329,9 @@ plot_zscore(data, d=2.5)
 The z-scores are interpreted as standard deviation units away from the mean, which is the center of the distribution.
 
 There are several test in statsmodels library to test if the data is normal distributed.
-1. **Kolmogorov-Smirnov Test** - The null hypothesis is that the data comes from Normal Distribution. The test returns the statistics and a **p-value**, if the p-value is less than 0.05, then you can reject the null hypothesis (data is not normally distributed). Otherwise, we fail to reject null hypothesis (data is normally distributed).
+1. olmogorov-Smirnov Test- The null hypothesis is that the data comes from Normal Distribution. The test returns the statistics and a -value if the p-value is less than 0.05, then you can reject the null hypothesis (data is not normally distributed). Otherwise, we fail to reject null hypothesis (data is normally distributed).
 
-    **ktest_normal - statslibrary**
-
+    test_normal - statslibrary
 
 ```python
 from statsmodels.stats.diagnostic import kstest_normal
@@ -6354,7 +6352,7 @@ test_normal(tx)
     Reject null hypothesis since p_value is 0.0009999999999998899. Data is not normal
 
 
-####  7.5. <a name='G.5DetectingOutliersusingamodifiedz-score'></a>G.5 Detecting Outliers using a modified z-score
+####  7.5. <a name='g.5-detecting-outliers-using-a-modified-z-score'></a>G.5 Detecting Outliers using a modified z-score
 
 Modified version of z-score comes to work when data is not normally distributed. The main difference between the regular z-score and modified z-score is that we replace the mean with median.
 
@@ -6375,7 +6373,7 @@ import scipy.stats as stats
 def modified_zscore(df, degree=3):
     data = df.copy()
     s = stats.norm.ppf(0.75) # percent point function, known as inverse cumulative distribution function - gives quantile for the percentile
-    numerator = s*(data - data.median())
+    numerator = sdata - data.median())
     MAD = np.abs(data - data.median()).median()
     data['m_zscore'] = numerator/MAD
     outliers = data[(data['m_zscore']>degree) | (data['m_zscore'] < -degree)]
@@ -6426,7 +6424,7 @@ plot_zscore(data, d=2.5)
     
 
 
-**QQ - Plot (Quantile-Quantile plot)** - Designed to test normality and sometimes help outliers.
+Q - Plot (Quantile-Quantile plot)- Designed to test normality and sometimes help outliers.
 
 
 ```python
@@ -6448,7 +6446,7 @@ res = scipy.stats.probplot(tx.values.reshape(-1), plot=plt)
 The solid line represents a reference line for what normally distributed data would look like. <br> If the data you are comparing is normally distributed, all the points will lie on that straight line. <br>
  We can see that the distribution is almost normal (not perfect), and we see issues toward the distribution's tails. Majority of the outliers are at the bottom tail end (less than -2 standard deviation).
 
-###  8. <a name='H.ExploratoryDataAnalysisandDiagnosis'></a>H. Exploratory Data Analysis and Diagnosis
+###  8. <a name='h.-exploratory-data-analysis-and-diagnosis'></a>H. Exploratory Data Analysis and Diagnosis
 
 For time series data exploratory data analysis includes some of the time series specific characteristics, such as stationarity, effects of trends and seasonality, autocorrelation etc.
 
@@ -6461,7 +6459,7 @@ Focus will be on the following:
 5. Applying power transformation
 6. Testing for autocorrelation in time series
 
-####  8.1. <a name='H.1PlottingtimeseriesdatausingPandas'></a>H.1 Plotting time series data using Pandas
+####  8.1. <a name='h.1-plotting-time-series-data-using-pandas'></a>H.1 Plotting time series data using Pandas
 
 
 ```python
@@ -6647,9 +6645,9 @@ There are many plotting styles that you can use within pandas simply by providin
     scatter - scatter plots 
     hexbin - hexagonal bin plots
 
-####  8.2. <a name='H.2PlottingtimeseriesdatawithinteractivevisualizationusinghvPlot'></a>H.2 Plotting time series data with interactive visualization using hvPlot
+####  8.2. <a name='h.2-plotting-time-series-data-with-interactive-visualization-using-hvplot'></a>H.2 Plotting time series data with interactive visualization using hvPlot
 
-####  8.3. <a name='H.3Decomposingtimeseriesdata'></a>H.3 Decomposing time series data
+####  8.3. <a name='h.3-decomposing-time-series-data'></a>H.3 Decomposing time series data
 
 There are 3 major component of any time series analysis process:
 1. Trend
@@ -6658,27 +6656,27 @@ There are 3 major component of any time series analysis process:
 
 These components help make informed decisions during the modeling process.
 
-**Trend** - Gives a sense of long-term direction of time series and can be upward, downward, or horizontal. <br>
-**Seasonality** - These are repeated patterns over time. For Ex. a time series of sales data might show an increase in sales around Christmas. <br>
-**Residual** - The residual is simply the remaining or unexplained portion once we extract trend and seasonality. <br>
+rend- Gives a sense of long-term direction of time series and can be upward, downward, or horizontal. <br>
+easonality- These are repeated patterns over time. For Ex. a time series of sales data might show an increase in sales around Christmas. <br>
+esidual- The residual is simply the remaining or unexplained portion once we extract trend and seasonality. <br>
 
 The decomposition of time series data is the process of extracting these three components and representing them as their models. The modeling of the decomposed components can be either additive or multiplicative.
 
-**Additive Model** when the original time series can be reconstructed by adding all three components:
+dditive Modelwhen the original time series can be reconstructed by adding all three components:
 
 $\huge{y_t} = T_t + S_t + R_t$
 
 An additive model is reasonable when the seasonal variations do not change over time.
 
-**Multiplicative Model** - If the time series can be constructed by multiplying all three components, you have a multiplicative model.
+ultiplicative Model- If the time series can be constructed by multiplying all three components, you have a multiplicative model.
 
-$\huge{y_t} = T_t * S_t * R_t$
+$\huge{y_t} = T_t S_t R_t$
 
 A multiplicative model is suitable when the seasonal variation fluctuates over time.
 
-**Seasonality** and **Trend** can be considered as **predictable components** (these are consistent, repeating patterns that can be captured and modeled).
+easonalityand rendcan be considered as redictable components(these are consistent, repeating patterns that can be captured and modeled).
 
-Whereas, unpredictable components, those that shows irregularity, often called noise, can be referred as **Residual** in context of decomposition.
+Whereas, unpredictable components, those that shows irregularity, often called noise, can be referred as esidualin context of decomposition.
 
 Different Decomposition Techniques:
 
@@ -6713,7 +6711,7 @@ co2_df.plot()
     
 
 
-The **co2_df** data shows a long-term linear trend, with a repeated seasonal pattern at a constant rate. (Seasonal Variation). This indicates that the CO2 dataset is an additive model.
+The o2_dfdata shows a long-term linear trend, with a repeated seasonal pattern at a constant rate. (Seasonal Variation). This indicates that the CO2 dataset is an additive model.
 
 
 ```python
@@ -6733,7 +6731,7 @@ airp_df['value'].plot()
     
 
 
-The **airp_df** data shows long-term linear upward trend and seasonality. However, the seasonality fluctuation seems to be increasing as well, indicating a multiplicative model.
+The irp_dfdata shows long-term linear upward trend and seasonality. However, the seasonality fluctuation seems to be increasing as well, indicating a multiplicative model.
 
 
 ```python
@@ -6776,9 +6774,7 @@ co2_decomposed.plot(); plt.show()
 
 
 ```python
-(air_decomposed.trend *
-air_decomposed.seasonal *
-air_decomposed.resid).plot(); #We can reconstruct the timeseries by multiplying the component, since the data was of multiplicative model.
+(air_decomposed.trend air_decomposed.seasonal air_decomposed.resid).plot(); #We can reconstruct the timeseries by multiplying the component, since the data was of multiplicative model.
 ```
 
 
@@ -6787,9 +6783,9 @@ air_decomposed.resid).plot(); #We can reconstruct the timeseries by multiplying 
     
 
 
-There is another decomposition option within statsmodel is STL, the STL option (class) requires additional parameters than the seasonal_decompose function. The two other parameters you will use are seasonal and robust. <br> The first one is **seasonal parameter**, is for the seasonal smoother and can only take odd integer values greater than or equal to 7. Similarly, the STL function has a trend smoother (the trend parameter).
+There is another decomposition option within statsmodel is STL, the STL option (class) requires additional parameters than the seasonal_decompose function. The two other parameters you will use are seasonal and robust. <br> The first one is easonal parameter is for the seasonal smoother and can only take odd integer values greater than or equal to 7. Similarly, the STL function has a trend smoother (the trend parameter).
 
-The second parameter is **robust**, which takes a Boolean value (True or False). Setting robust=True helps remove the impact of outliers on seasonal and trend components when calculated.
+The second parameter is obust which takes a Boolean value (True or False). Setting robust=True helps remove the impact of outliers on seasonal and trend components when calculated.
 
 
 ```python
@@ -6807,7 +6803,7 @@ co2_stl.plot(); plt.show()
 
 The STL class uses the LOESS seasonal smoother, which stands for Locally Estimated Scatterplot Smoothing. STL is more robust than seasonal_decompose for measuring non-linear relationships. <br> On the other hand, STL assumes additive composition, so you do not need to indicate a model, unlike with seasonal_decompose.
 
-The **Hodrick-Prescott filter** is a smoothing filter that can be used to separate short-term fluctuations (cyclic variations) from long-term trends. This is implemented as **hp_filter** in the statsmodels library.
+The odrick-Prescott filteris a smoothing filter that can be used to separate short-term fluctuations (cyclic variations) from long-term trends. This is implemented as p_filterin the statsmodels library.
 
 STL and seasonal_decompose returned three components (trend, seasonal, and residual). On the other hand, hp_filter returns two components: a cyclical component and a trend component.
 
@@ -6835,20 +6831,19 @@ co2_trend.plot(ax=ax[1], title='CO2 Trend Component')
     
 
 
-####  8.4. <a name='H.4Detectingtimeseriesstationarity'></a>H.4 Detecting time series stationarity
+####  8.4. <a name='h.4-detecting-time-series-stationarity'></a>H.4 Detecting time series stationarity
 
-A **stationary** time series implies that specific statistical properties do not vary over time and remain steady, making the processes easier to model and predict. <br> On the other hand, a **non-stationary** process is more complex to model due to the dynamic nature and variations over time.
+A tationarytime series implies that specific statistical properties do not vary over time and remain steady, making the processes easier to model and predict. <br> On the other hand, a on-stationaryprocess is more complex to model due to the dynamic nature and variations over time.
 
-A stationary time series is defined as a time series with a **constant mean**, a **constant variance**, and a **consistent covariance** (or **autocorrelation**) between identical distanced periods (lags). <br> Having the mean and variance as constants simplifies modeling since you are not solving for them as functions of time.
+A stationary time series is defined as a time series with a onstant mean a onstant variance and a onsistent covariance(or utocorrelation between identical distanced periods (lags). <br> Having the mean and variance as constants simplifies modeling since you are not solving for them as functions of time.
 
 Generally, a time series with trend or seasonality can be considered non-stationary. Usually, spotting trends or seasonality visually in a plot can help you determine whether the time series is stationary or not. It is not always easy to identify stationarity or lack if it, visually. <br>
 
 We do have some statistical tests, to help identify stationary or non-stationary time series numerically.
 
-**Statistical Tests to identify stationarity**
-
-1. Augmented Dicker-Fuller **(ADF)** Test
-2. Kwiatkowski-Phillips-Schnidt-Shin **(KPSS)** Test
+tatistical Tests to identify stationarity
+1. Augmented Dicker-Fuller ADF)Test
+2. Kwiatkowski-Phillips-Schnidt-Shin KPSS)Test
 
 Both these, test for unit roots in a univariate time series process. Generally presence of unit roots indicates non-stationarity. <br>
 
@@ -6981,17 +6976,17 @@ pd.concat([
 
 
 
-For *ADF*, the p-value is at 0.96, which is greater than 0.05, so you cannot reject the null hypothesis, and therefore, the time series is non-stationary.<br> For *KPSS*, the p-value is at 0.01, which is less than 0.05, so you reject the null hypothesis, and therefore, the time series is non-stationary.
+For DF the p-value is at 0.96, which is greater than 0.05, so you cannot reject the null hypothesis, and therefore, the time series is non-stationary.<br> For PSS the p-value is at 0.01, which is less than 0.05, so you reject the null hypothesis, and therefore, the time series is non-stationary.
 
-1. The **Test Statistic** value is 0.046 for ADF and 8.18 for KPSS, which are above the 1% critical value threshold. This indicates that the time series is non-stationary. It confirms that you cannot reject the null hypothesis. The critical values for ADF come from a Dickey-Fuller table. 
-2. The **p-value** result is associated with the test statistic. Generally, you can reject the null hypothesis if the p-value is less than 0.05 (5%). Again, when using ADF, KPSS, or other stationarity tests, make sure to understand the null hypothesis to accurately interpret the results.
-3. **Number of lags** represents the number of lags used in the autoregressive process in the test (ADF and KPSS). In both tests, 27 lags were used. Since our CO2 data is weekly, a lag represents 1 week back. So, 27 lags represent 27 weeks in our data.
+1. The est Statisticvalue is 0.046 for ADF and 8.18 for KPSS, which are above the 1% critical value threshold. This indicates that the time series is non-stationary. It confirms that you cannot reject the null hypothesis. The critical values for ADF come from a Dickey-Fuller table. 
+2. The -valueresult is associated with the test statistic. Generally, you can reject the null hypothesis if the p-value is less than 0.05 (5%). Again, when using ADF, KPSS, or other stationarity tests, make sure to understand the null hypothesis to accurately interpret the results.
+3. umber of lagsrepresents the number of lags used in the autoregressive process in the test (ADF and KPSS). In both tests, 27 lags were used. Since our CO2 data is weekly, a lag represents 1 week back. So, 27 lags represent 27 weeks in our data.
 4. The number of observations used is the number of data points, excluding the number of lags.
-5. The maximized info criteria are based on the **autolag** parameter. The default is **autolag="aic"** for the **Akaike information criterion**. Other acceptable autolag parameter values are bic for the **Bayesian information criterion** and t-stat.
+5. The maximized info criteria are based on the utolagparameter. The default is utolag="aic"for the kaike information criterion Other acceptable autolag parameter values are bic for the ayesian information criterionand t-stat.
 
 Essentially stationarity can be achieved by removing trend (detrending) and seasonality effects.
 
-**6 Main techniques to make time series stationary**, such as transformations and differencing.
+ Main techniques to make time series stationary such as transformations and differencing.
 
 1. First-Order Differencing
 2. Second-Order Differencing
@@ -7055,8 +7050,8 @@ def plot_comparison(methods, plot_type='line'):
 
 Implementing methods to transform time series stationary or extracting stationary component.
 
-**1. First Order Differencing**: This is also known as de-trending, calculated by subtracting an observation at time $t$ from the previous observation at time $t-1$, $(y_t - y_{t-1})$. <br>
-This can be done using **.diff()** function which default period=1. <br>
+. First Order Differencing This is also known as de-trending, calculated by subtracting an observation at time $t$ from the previous observation at time $t-1$, $(y_t - y_{t-1})$. <br>
+This can be done using diff()function which default period=1. <br>
 Differenced data will contain one less data point (row) than the original data, hence the use of the .dropna() method.
 
 
@@ -7064,14 +7059,14 @@ Differenced data will contain one less data point (row) than the original data, 
 first_order_diff = co2_df.diff().dropna()
 ```
 
-**2. Second Order Differencing**: This is useful if seasonality exists or if the first order differencing was insufficient. This is essentially differencing twice - differencing to remove seasonality followed by differencing to remove trend.
+. Second Order Differencing This is useful if seasonality exists or if the first order differencing was insufficient. This is essentially differencing twice - differencing to remove seasonality followed by differencing to remove trend.
 
 
 ```python
 differencing_twice = co2_df.diff(52).diff().dropna()
 ```
 
-**3. Substracting moving average**: rolling window from the time series using **DataFrame.rolling(window=52).mean()** since it is weekly data:
+. Substracting moving average rolling window from the time series using ataFrame.rolling(window=52).mean()since it is weekly data:
 
 
 ```python
@@ -7079,14 +7074,14 @@ rolling = co2_df.rolling(window=52).mean()
 substract_rolling_mean = co2_df - rolling
 ```
 
-**4. Log Transformation**: Using **np.log()** is a common technique to stabilize the variance in a time series and sometimes enough to make the time series stationary. Simply, all it does is replace each observation with its log value 
+. Log Transformation Using p.log()is a common technique to stabilize the variance in a time series and sometimes enough to make the time series stationary. Simply, all it does is replace each observation with its log value 
 
 
 ```python
 log_transform = np.log(co2_df)
 ```
 
-**5. Decomposition**: Using decomposition to remove the trend component, such as **seasonal_decompose**. If the decomposition component is additive then the default parameter in seasonal_decompose is additive.
+. Decomposition Using decomposition to remove the trend component, such as easonal_decompose If the decomposition component is additive then the default parameter in seasonal_decompose is additive.
 
 
 ```python
@@ -7094,7 +7089,7 @@ decom = seasonal_decompose(co2_df)
 sd_detrend = decom.observed - decom.trend
 ```
 
-**6. Using Hodrick-Prescott** filter to remove the trend component
+. Using Hodrick-Prescottfilter to remove the trend component
 
 
 ```python
@@ -7118,7 +7113,7 @@ plot_comparison(methods) #Plotting the different methods to make the CO2 time se
 
 
 Over-differenting time series as some studies have shown that models are less accurate. <br> 
-For example, first_order_diff already made the time series stationary, and thus there was no need to difference it any further. In other words, differencing_twice was not needed. <br> Additionally, notice how **log_transform** is still non-stationary.
+For example, first_order_diff already made the time series stationary, and thus there was no need to difference it any further. In other words, differencing_twice was not needed. <br> Additionally, notice how og_transformis still non-stationary.
 
 
 ```python
