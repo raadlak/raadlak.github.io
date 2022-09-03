@@ -1,8 +1,13 @@
 plugins:
   - jekyll-relative-links
+  - jekyll-feed
+  - jekyll-sitemap
 relative_links:
   enabled: true
   collections: true
 include:
   - DataScienceSetup.md
   - README.md
+
+- name: fastpages: An easy to use blogging platform with support for Jupyter Notebooks.
+uses: fastai/fastpages@v2.1.5
