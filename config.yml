@@ -8,6 +8,7 @@ relative_links:
 include:
   - DataScienceSetup.md
   - README.md
+  - TimeSeries.md
 
 - name: fastpages: An easy to use blogging platform with support for Jupyter Notebooks.
 uses: fastai/fastpages@v2.1.5
