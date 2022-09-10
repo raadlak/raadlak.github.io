@@ -2,13 +2,63 @@
 
 ###### Excerpt From Time Series Analysis with Python Cookbook by Tarek A. Atwan
 
-### A. Reading TimeSeries Data in Pandas from Files    
+<!-- vscode-markdown-toc -->
+  * 1. [A. Reading TimeSeries Data in Pandas from Files](#a.-reading-timeseries-data-in-pandas-from-files)
+    * 1.1. [1. Reading data from CSVs and other delimited files](#1.-reading-data-from-csvs-and-other-delimited-files)
+    * 1.2. [2. Reading Data from Excel Files](#2.-reading-data-from-excel-files)
+    * 1.3. [3. Reading data from GitHub](#3.-reading-data-from-github)
+    * 1.4. [4. Reading data from public S3 bucket](#4.-reading-data-from-public-s3-bucket)
+    * 1.5. [4.1 Reading data from private S3 Bucket](#4.1-reading-data-from-private-s3-bucket)
+    * 1.6. [5. Reading data from HTML](#5.-reading-data-from-html)
+    * 1.7. [6. Reading data from SAS dataset](#6.-reading-data-from-sas-dataset)
+  * 2. [B. Reading Time Series Data from Databases](#b.-reading-time-series-data-from-databases)
+    * 2.1. [B.1 Reading Data from relational databases](#b.1-reading-data-from-relational-databases)
+    * 2.2. [B.4 Reading data from time series database (InfluxDB)](#b.4-reading-data-from-time-series-database-(influxdb))
+  * 3. [C. Writing timeseries data to files](#c.-writing-timeseries-data-to-files)
+  * 4. [D. Writing time series data to Databases](#d.-writing-time-series-data-to-databases)
+  * 5. [E. Working with Date and Time in Python](#e.-working-with-date-and-time-in-python)
+    * 5.1. [E.1 DatetimeIndex](#e.1-datetimeindex)
+    * 5.2. [E.2  DateTime Formatting](#e.2-datetime-formatting)
+    * 5.3. [E.3 Tranforming a pandas DataFrame to a time series DataFrame](#e.3-tranforming-a-pandas-dataframe-to-a-time-series-dataframe)
+    * 5.4. [E.4 Working with Time Deltas](#e.4-working-with-time-deltas)
+    * 5.5. [E.5 Converting Datetime with TimeZone information](#e.5-converting-datetime-with-timezone-information)
+    * 5.6. [E.6 Working with date offsets](#e.6-working-with-date-offsets)
+    * 5.7. [E.6 Custom business days](#e.6-custom-business-days)
+    * 5.8. [E.7 Custom Business Day hours](#e.7-custom-business-day-hours)
+  * 6. [F. Handling Missing Data](#f.-handling-missing-data)
+    * 6.1. [F.1 Handling missing data with imputation using Pandas](#f.1-handling-missing-data-with-imputation-using-pandas)
+    * 6.2. [F.1.2 Handling missing data with univariate imputation using scikit-learn](#f.1.2-handling-missing-data-with-univariate-imputation-using-scikit-learn)
+    * 6.3. [F.1.3 Handling missing data with multivariate imputation](#f.1.3-handling-missing-data-with-multivariate-imputation)
+    * 6.4. [F.1.4 Handling missing data with Interpolation](#f.1.4-handling-missing-data-with-interpolation)
+  * 7. [G. Outlier Detection Using Statistical Methods](#g.-outlier-detection-using-statistical-methods)
+    * 7.1. [G.1 Resampling time series data](#g.1-resampling-time-series-data)
+    * 7.2. [G.2 Detecting Outliers using Visualization](#g.2-detecting-outliers-using-visualization)
+    * 7.3. [G.3 Detecting Outliers with Tukey Method](#g.3-detecting-outliers-with-tukey-method)
+    * 7.4. [G.4 Detecting outliers using a z-score](#g.4-detecting-outliers-using-a-z-score)
+    * 7.5. [G.5 Detecting Outliers using a modified z-score](#g.5-detecting-outliers-using-a-modified-z-score)
+  * 8. [H. Exploratory Data Analysis and Diagnosis](#h.-exploratory-data-analysis-and-diagnosis)
+    * 8.1. [H.1 Plotting time series data using Pandas](#h.1-plotting-time-series-data-using-pandas)
+    * 8.2. [H.2 Plotting time series data with interactive visualization using hvPlot](#h.2-plotting-time-series-data-with-interactive-visualization-using-hvplot)
+    * 8.3. [H.3 Decomposing time series data](#h.3-decomposing-time-series-data)
+    * 8.4. [H.4 Detecting time series stationarity](#h.4-detecting-time-series-stationarity)
+    * 8.5. [H.5 Applying Power Transformations](#h.5-applying-power-transformations)
+    * 8.6. [H.6 Testing for Auto-Correlation in Time Series](#h.6-testing-for-auto-correlation-in-time-series)
+  * 9. [I. Building Univariate Time Series Models Using Statistical Methods](#i.-building-univariate-time-series-models-using-statistical-methods)
+    * 9.1. [I.1 Plotting ACF and PACF](#i.1-plotting-acf-and-pacf)
+
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+
+###  1. <a name='a.-reading-timeseries-data-in-pandas-from-files'></a>A. Reading TimeSeries Data in Pandas from Files    
 
 Often we see that time series Data is represented with Indexes. Reason in general to represent DataFrame with Index is to make slicing and dicing operations very intuitive.<br> DatetimeIndex is used for time series as Index which unlocks many features and useful functions esential while working with time series data.
 
 Following are the recipes to efficiently read time series data into a DataFrame.
 
-#### 1. Reading data from CSVs and other delimited files
+####  1.1. <a name='1.-reading-data-from-csvs-and-other-delimited-files'></a>1. Reading data from CSVs and other delimited files
 
 
 ```python
@@ -406,7 +456,7 @@ ts.head()
 
 
 
-#### 2. Reading Data from Excel Files
+####  1.2. <a name='2.-reading-data-from-excel-files'></a>2. Reading Data from Excel Files
 
 Excels contain multiple worksheets, so it is essential to explore different options to read Excels.In read_excel(), we will use engine parameter to specify, which library to use for processing Excels. <br>
 Ex: openpyxl, xlrd
@@ -475,7 +525,7 @@ ts_combined.info()
     memory usage: 2.8+ MB
 
 
-#### 3. Reading data from GitHub
+####  1.3. <a name='3.-reading-data-from-github'></a>3. Reading data from GitHub
 
 To read data from github we need url to the raw content, like (https://media.githubusercontent.com/media/PacktPublishing/Time-Series-Analysis-with-Python-Cookbook./main/datasets/Ch2/AirQualityUCI.csv)
 
@@ -560,7 +610,7 @@ df.iloc[:3, 1:4]
 
 
 
-#### 4. Reading data from public S3 bucket
+####  1.4. <a name='4.-reading-data-from-public-s3-bucket'></a>4. Reading data from public S3 bucket
 
 To read data from public S3 bucket, you don't need to specify the region (us-east-1), we can directly read it using s3 url.
 
@@ -735,7 +785,7 @@ Reading the same file using s3url
 s3uri = 's3://tscookbook/AirQualityUCI.csv'
 ```
 
-#### 4.1 Reading data from private S3 Bucket
+####  1.5. <a name='4.1-reading-data-from-private-s3-bucket'></a>4.1 Reading data from private S3 Bucket
 
 
 ```python
@@ -782,7 +832,7 @@ df = pd.read_csv(data['Body'], # when we call get_object, we receive a key-value
                 parse_dates=True)
 ```
 
-#### 5. Reading data from HTML
+####  1.6. <a name='5.-reading-data-from-html'></a>5. Reading data from HTML
 
 We can read HTML tables using pandas.read_html() function. We will https://en.wikipedia.org/wiki/COVID-19_pandemic_by_country_and_territory link to access HTML Wikipedia data.
 
@@ -924,7 +974,7 @@ Most of the pandas functions accept URL as a path, examples includes following: 
 The URL needs to be one of the valid URL schemes that pandas supports, which includes http and https, ftp, s3, gs, or the file protocol.
 			
 
-#### 6. Reading data from SAS dataset
+####  1.7. <a name='6.-reading-data-from-sas-dataset'></a>6. Reading data from SAS dataset
 
 We can use pandas.read_sas() function to read SAS7BDAT files.
 
@@ -1041,7 +1091,7 @@ l_path = Path(_base_location+chapter+filename)
     Wall time: 820 ms
 
 
-### B. Reading Time Series Data from Databases
+###  2. <a name='b.-reading-time-series-data-from-databases'></a>B. Reading Time Series Data from Databases
 
 Reading TimeSeries Data from different databases with DatetimeIndex. <br>
 
@@ -1052,7 +1102,7 @@ Reading third-party financial data using APIs <br>
 Reading data from a time series database (InfluxDB) <br>
 
 
-#### B.1 Reading Data from relational databases
+####  2.1. <a name='b.1-reading-data-from-relational-databases'></a>B.1 Reading Data from relational databases
 
 To read data from relational databases we will start with Postgre SQL. We will be exploring two different methods to connect to PSQL. <br>
 1. psycopg2 - python connector for PSQL.
@@ -1407,7 +1457,7 @@ Additionally, the library provides other high-level functions for many of the da
 
 
 
-#### B.4 Reading data from time series database (InfluxDB)
+####  2.2. <a name='b.4-reading-data-from-time-series-database-(influxdb)'></a>B.4 Reading data from time series database (InfluxDB)
 
 A time serie DB, a type of NoSQL database, is optimized for time-stamped or time series data for improved performance, especially when working with large datasets containing IoT data or sensor data. 
 
@@ -1492,13 +1542,13 @@ query_api gives us additional methods to interact with our bucket:
 * query_stream() is similar to query_data_frame_stream but returns a stream of FluxRecord as a generator.
 
 
-### C. Writing timeseries data to files
+###  3. <a name='c.-writing-timeseries-data-to-files'></a>C. Writing timeseries data to files
 
-### D. Writing time series data to Databases
+###  4. <a name='d.-writing-time-series-data-to-databases'></a>D. Writing time series data to Databases
 
-### E. Working with Date and Time in Python
+###  5. <a name='e.-working-with-date-and-time-in-python'></a>E. Working with Date and Time in Python
 
-#### E.1 DatetimeIndex
+####  5.1. <a name='e.1-datetimeindex'></a>E.1 DatetimeIndex
 
 It is critical to understand DatetimeIndex to work with Date and Time datasets.
 
@@ -1674,7 +1724,7 @@ pd.date_range(start='2021-01-01',
 
 
 
-#### E.2  DateTime Formatting
+####  5.2. <a name='e.2-datetime-formatting'></a>E.2  DateTime Formatting
 
 At times date column is stored as string format, to have more control, to ensure date is parsed correctly as date/datetime object we use strptime() method from datetime module.
 
@@ -1741,7 +1791,7 @@ dt.datetime.strptime('Saturday, January 1, 2022', '%A, %B %d, %Y').date()
 
 
 
-#### E.3 Tranforming a pandas DataFrame to a time series DataFrame
+####  5.3. <a name='e.3-tranforming-a-pandas-dataframe-to-a-time-series-dataframe'></a>E.3 Tranforming a pandas DataFrame to a time series DataFrame
 
 
 ```python
@@ -1820,7 +1870,7 @@ df.info() #since Date is now index
     memory usage: 48.0 bytes
 
 
-#### E.4 Working with Time Deltas
+####  5.4. <a name='e.4-working-with-time-deltas'></a>E.4 Working with Time Deltas
 
 
 ```python
@@ -2380,7 +2430,7 @@ df
 
 
 
-#### E.5 Converting Datetime with TimeZone information 
+####  5.5. <a name='e.5-converting-datetime-with-timezone-information'></a>E.5 Converting Datetime with TimeZone information 
 
 Time-series data requires attention to different time zones, when developing data pipelines, building a data warehouse, or integrating data between systems, dealing with time zones requires attention
 
@@ -2912,7 +2962,7 @@ df
 
 
 
-#### E.6 Working with date offsets
+####  5.6. <a name='e.6-working-with-date-offsets'></a>E.6 Working with date offsets
 
 Offsets are useful in transforming dates into something more meaningful and relatable.
 
@@ -3622,7 +3672,7 @@ df
 
 
 
-#### E.6 Custom business days
+####  5.7. <a name='e.6-custom-business-days'></a>E.6 Custom business days
 
 
 ```python
@@ -3736,7 +3786,7 @@ These include the following:
     CustomBusinessMonthBegin or CBMonthBegin
     CustomBusinessHour
 
-#### E.7 Custom Business Day hours
+####  5.8. <a name='e.7-custom-business-day-hours'></a>E.7 Custom Business Day hours
 
 
 ```python
@@ -3869,7 +3919,7 @@ df['Date'] + cust_hours * 16
 
 
 
-### F. Handling Missing Data
+###  6. <a name='f.-handling-missing-data'></a>F. Handling Missing Data
 
 Missing data and outliers are two common problems that need to be dealt with during data cleaning and preparation. <br>
 Time series data is no different, and before plugging the data into any analysis or modeling workflow, you must investigate the data first.<br>We will explore techniques to handle missing data through imputation and interpolation.
@@ -4342,7 +4392,7 @@ ecom_df.describe(include='all', datetime_is_numeric=True)
 test = pd.read_csv(folder1, parse_dates=['date'], na_values={'?'}) #specifying the na values based on the summary statistics 
 ```
 
-#### F.1 Handling missing data with imputation using Pandas
+####  6.1. <a name='f.1-handling-missing-data-with-imputation-using-pandas'></a>F.1 Handling missing data with imputation using Pandas
 
 There are two approaches to impute missing data:
 
@@ -4803,7 +4853,7 @@ plot_dfs(clicks_original, clicks_missing, 'clicks')
     
 
 
-#### F.1.2 Handling missing data with univariate imputation using scikit-learn
+####  6.2. <a name='f.1.2-handling-missing-data-with-univariate-imputation-using-scikit-learn'></a>F.1.2 Handling missing data with univariate imputation using scikit-learn
 
 **SimpleImputer class from scikit-learn** accepts different values for the strategy parameter, including mean, median and most_frequent.
 
@@ -5051,7 +5101,7 @@ _ = rmse_score(co2_original, co2_missing[cols], 'co2')
     Mininum RMSE belongs to Mean Strategy is 0.7156383637041684
 
 
-#### F.1.3 Handling missing data with multivariate imputation
+####  6.3. <a name='f.1.3-handling-missing-data-with-multivariate-imputation'></a>F.1.3 Handling missing data with multivariate imputation
 
 In multivariate imputation we use multiple variables within the dataset to impute missing values. Having more variables within the dataset,chime in to improve the predictability of missing values.
 
@@ -5223,7 +5273,7 @@ _ = mice_data.plot_fit_obs('clicks')
 
 Overall, multivariate imputation techniques generally produce better results than univariate methods.<br> This is true when working with more complex time-series datasets in terms of the number of features (columns) and records. <br> Though univariate imputers are more efficient in terms of speed and simplicity to interpret, there is a need to balance complexity, quality, and analytical requirements.
 
-#### F.1.4 Handling missing data with Interpolation
+####  6.4. <a name='f.1.4-handling-missing-data-with-interpolation'></a>F.1.4 Handling missing data with Interpolation
 
 Commonly used technique for imputing missing values is interpolation. The pandas library provides the `DataFrame.interpolate()` method for more complex univariate imputation strategies. <br>
 Each interpolation method will have a different mathematical operation to determine how to fill in for the missing data.
@@ -5334,7 +5384,7 @@ plot_dfs(clicks_original, clicks_missing[cols], 'clicks')
     
 
 
-### G. Outlier Detection Using Statistical Methods
+###  7. <a name='g.-outlier-detection-using-statistical-methods'></a>G. Outlier Detection Using Statistical Methods
 
 Types of Outliers: <br>
 **Point Outlier** - A data point deviates from the rest of the population—sometimes referred to as a global outlier.<br>
@@ -5441,7 +5491,7 @@ In **statistical methods**, you have different tools that you can leverage:
 
 These are basic, easy to interpret, and effective methods.
 
-#### G.1 Resampling time series data
+####  7.1. <a name='g.1-resampling-time-series-data'></a>G.1 Resampling time series data
 
 Resampling implies changing the frequency or level of granularity of the data.
 
@@ -5714,7 +5764,7 @@ nyc_taxi.resample('W').agg(['mean', 'sum', 'max', 'median', 'max']).head()
 
 
 
-#### G.2 Detecting Outliers using Visualization
+####  7.2. <a name='g.2-detecting-outliers-using-visualization'></a>G.2 Detecting Outliers using Visualization
 
 There are two general approaches for using statistical techniques to detect outliers: **parametric** and **non-parametric** methods. <br> Parametric methods assume you know the underlying distribution of the data. For example, if your data follows a normal distribution. <br> On the other hand, in non-parametric methods, you make no such assumptions.
 
@@ -5894,7 +5944,7 @@ lag_plot(tx)
     
 
 
-#### G.3 Detecting Outliers with Tukey Method
+####  7.3. <a name='g.3-detecting-outliers-with-tukey-method'></a>G.3 Detecting Outliers with Tukey Method
 
 The box plot showed the quartiles with whiskers extending to the upper and lower fences. These boundaries or fences were calculated using the Tukey method.
 
@@ -6189,7 +6239,7 @@ for p in [1.3, 1.5, 2.0, 2.5,  3.0]:
     ---------------
 
 
-#### G.4 Detecting outliers using a z-score
+####  7.4. <a name='g.4-detecting-outliers-using-a-z-score'></a>G.4 Detecting outliers using a z-score
 
 **z-score** is a common transformation for standardizing the data, common when you want to compare different datasets.
 
@@ -6310,7 +6360,7 @@ test_normal(tx)
     Reject null hypothesis since p_value is 0.0009999999999998899. Data is not normal
 
 
-#### G.5 Detecting Outliers using a modified z-score
+####  7.5. <a name='g.5-detecting-outliers-using-a-modified-z-score'></a>G.5 Detecting Outliers using a modified z-score
 
 Modified version of z-score comes to work when data is not normally distributed. The main difference between the regular z-score and modified z-score is that we replace the mean with median.
 
@@ -6404,7 +6454,7 @@ res = scipy.stats.probplot(tx.values.reshape(-1), plot=plt)
 The solid line represents a reference line for what normally distributed data would look like. <br> If the data you are comparing is normally distributed, all the points will lie on that straight line. <br>
  We can see that the distribution is almost normal (not perfect), and we see issues toward the distribution's tails. Majority of the outliers are at the bottom tail end (less than -2 standard deviation).
 
-### H. Exploratory Data Analysis and Diagnosis
+###  8. <a name='h.-exploratory-data-analysis-and-diagnosis'></a>H. Exploratory Data Analysis and Diagnosis
 
 For time series data exploratory data analysis includes some of the time series specific characteristics, such as stationarity, effects of trends and seasonality, autocorrelation etc.
 
@@ -6417,7 +6467,7 @@ Focus will be on the following:
 5. Applying power transformation
 6. Testing for autocorrelation in time series
 
-#### H.1 Plotting time series data using Pandas
+####  8.1. <a name='h.1-plotting-time-series-data-using-pandas'></a>H.1 Plotting time series data using Pandas
 
 
 ```python
@@ -6603,9 +6653,9 @@ There are many plotting styles that you can use within pandas simply by providin
 * scatter - scatter plots 
 * hexbin - hexagonal bin plots
 
-#### H.2 Plotting time series data with interactive visualization using hvPlot
+####  8.2. <a name='h.2-plotting-time-series-data-with-interactive-visualization-using-hvplot'></a>H.2 Plotting time series data with interactive visualization using hvPlot
 
-#### H.3 Decomposing time series data
+####  8.3. <a name='h.3-decomposing-time-series-data'></a>H.3 Decomposing time series data
 
 There are 3 major component of any time series analysis process:
 1. Trend
@@ -6803,7 +6853,7 @@ co2_trend.plot(ax=ax[1], title='CO2 Trend Component')
     
 
 
-#### H.4 Detecting time series stationarity
+####  8.4. <a name='h.4-detecting-time-series-stationarity'></a>H.4 Detecting time series stationarity
 
 A **stationary** time series implies that specific statistical properties do not vary over time and remain steady, making the processes easier to model and predict. <br> On the other hand, a **non-stationary** process is more complex to model due to the dynamic nature and variations over time.
 
@@ -7257,7 +7307,7 @@ adf_result[3] : Includes Result Store object
 
 
 
-#### H.5 Applying Power Transformations
+####  8.5. <a name='h.5-applying-power-transformations'></a>H.5 Applying Power Transformations
 
 We will extend what you learned from **Detecting time series stationarity**, and test for two additional assumptions: normality and homoskedasticity.
 
@@ -7641,7 +7691,7 @@ model_bx.plot_diagnostics(); plt.show()
 
 The **.plot_diagnostics()** function will show four plots so you can examine the model's residuals. Mainly, the plots will show whether the residuals are normally distributed from the Q-Q plot and histogram.
 
-#### H.6 Testing for Auto-Correlation in Time Series
+####  8.6. <a name='h.6-testing-for-auto-correlation-in-time-series'></a>H.6 Testing for Auto-Correlation in Time Series
 
 **Autocorrelation** is like statistical correlation (think Pearson correlation from high school), which measures the strength of a linear relationship between two variables, except that we measure the linear relationship between time series values separated by a lag. In other words, we are comparing a variable with its lagged version of itself.
 
@@ -7831,7 +7881,7 @@ acorr_ljungbox(model_bx.resid, return_df=True, lags=10) #null hypothesis rejecte
 
 
 
-### I. Building Univariate Time Series Models Using Statistical Methods
+###  9. <a name='i.-building-univariate-time-series-models-using-statistical-methods'></a>I. Building Univariate Time Series Models Using Statistical Methods
 
 With time series data, different methods and models can be used, depending on whether the time series is univariate or multivariate, seasonal or non-seasonal, stationary or non-stationary, and linear or nonlinear.
 
@@ -8002,7 +8052,7 @@ def combinator(items):
     return combo
 ```
 
-#### I.1 Plotting ACF and PACF
+####  9.1. <a name='i.1-plotting-acf-and-pacf'></a>I.1 Plotting ACF and PACF
 
 To build statistical model such as AR, MA, ARMA, ARIMA or SARIMA, we need to determine the type of time series model that is most suitable for your data and the values for some of the required parameters, called orders. Also known as lag orders for AR (Auto Regressors) or MA (Moving Average) components.
 
